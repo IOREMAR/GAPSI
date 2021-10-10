@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.gapsiproyect.Network.ProductsNetwork
 import com.example.gapsiproyect.daos.ProductsDao
+import com.example.gapsiproyect.daos.Results
 import kotlinx.coroutines.flow.Flow
 
 class ProductRepository (private val service: ProductsNetwork){
@@ -14,7 +15,7 @@ class ProductRepository (private val service: ProductsNetwork){
      */
 
 
-    fun getListProducts(query : String) : Flow<PagingData<ProductsDao>> {
+    fun getListProducts(query : String) : Flow<PagingData<Results>> {
 
         return Pager(
             config = PagingConfig(
@@ -26,7 +27,7 @@ class ProductRepository (private val service: ProductsNetwork){
     }
 
     companion object {
-        private const val NETWORK_PAGE_SIZE = 5
+        private const val NETWORK_PAGE_SIZE = 20
     }
 
 

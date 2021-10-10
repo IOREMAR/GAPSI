@@ -31,47 +31,47 @@ Root root = om.readValue(myJsonString), Root.class); */
 
 @Serializable
 data class ProductsDao (
-    @field:SerializedName("id")
+   @SerializedName("id")
     var id : Int ,
-    @field:SerializedName("name")
+   @SerializedName("name")
     var name: String? ,
-    @field:SerializedName("tagline")
+   @SerializedName("tagline")
     var tagline: String? ,
-    @field:SerializedName("first_brewed")
+   @SerializedName("first_brewed")
     var first_brewed: String? ,
-    @field:SerializedName("description")
+   @SerializedName("description")
     var description: String? ,
-    @field:SerializedName("image_url")
+   @SerializedName("image_url")
     var image_url: String? ,
-    @field:SerializedName("abv")
+   @SerializedName("abv")
     var abv : Double,
-    @field:SerializedName("ibu")
+   @SerializedName("ibu")
     var ibu : Double,
-    @field:SerializedName("target_fg")
+   @SerializedName("target_fg")
     var target_fg :Int,
-    @field:SerializedName("target_og")
+   @SerializedName("target_og")
     var target_og :Double,
-    @field:SerializedName("ebc")
+   @SerializedName("ebc")
     var ebc :Int,
-    @field:SerializedName("srm")
+   @SerializedName("srm")
     var srm : Double,
-    @field:SerializedName("ph")
+   @SerializedName("ph")
     var ph : Double,
-    @field:SerializedName("attenuation_level")
+   @SerializedName("attenuation_level")
     var attenuation_level :Double,
-    @field:SerializedName("volume")
+   @SerializedName("volume")
     var volume: Volume? ,
-    @field:SerializedName("boil_volume")
+   @SerializedName("boil_volume")
     var boil_volume: BoilVolume? ,
-    @field:SerializedName("method")
+   @SerializedName("method")
     var method: Method? ,
-    @field:SerializedName("ingredients")
+   @SerializedName("ingredients")
     var ingredients: Ingredients? ,
-    @field:SerializedName("food_pairing")
+   @SerializedName("food_pairing")
     var food_pairing: List<String>? ,
-    @field:SerializedName("brewers_tips")
+   @SerializedName("brewers_tips")
     var brewers_tips: String? ,
-    @field:SerializedName("contributed_by")
+   @SerializedName("contributed_by")
     var contributed_by: String?
 )
 

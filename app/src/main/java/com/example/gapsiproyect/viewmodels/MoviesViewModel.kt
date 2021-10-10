@@ -5,11 +5,11 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.gapsiproyect.Loaders.LoadingState
 import com.example.gapsiproyect.Repositories.ProductRepository
-import com.example.gapsiproyect.daos.ProductsDao
+import com.example.gapsiproyect.daos.Results
 import kotlinx.coroutines.flow.Flow
 
-class MainViewModel (private val repository :  ProductRepository,
-                     private val savedStateHandle: SavedStateHandle
+class MoviesViewModel (private val repository :  ProductRepository,
+                       private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
 
@@ -25,13 +25,13 @@ class MainViewModel (private val repository :  ProductRepository,
 
     private var currentQueryValue: String? = null
 
-    private var currentSearchResult: Flow<PagingData<ProductsDao>>? = null
+    private var currentSearchResult: Flow<PagingData<Results>>? = null
 
 
-    fun listProductsCriteria(queryString : String): Flow<PagingData<ProductsDao>> {
+    fun listProductsCriteria(queryString : String): Flow<PagingData<Results>> {
 
         currentQueryValue = queryString
-        val newResult: Flow<PagingData<ProductsDao>> = repository.getListProducts(queryString)
+        val newResult: Flow<PagingData<Results>> = repository.getListProducts(queryString)
             .cachedIn(viewModelScope)
         currentSearchResult = newResult
         return newResult

@@ -12,9 +12,6 @@
     <dimen name="padding_xlarge">22dp</dimen>
     <dimen name="padding_xxlarge">26dp</dimen>
     <dimen name="padding_xxxlarge">30dp</dimen>
-
-
-
     <dimen name="TextInfoCardView_standar">14sp</dimen>
     <dimen name="TextInfoCardView_small">12sp</dimen>
     <dimen name="TextInfoCardView_large">16sp</dimen>

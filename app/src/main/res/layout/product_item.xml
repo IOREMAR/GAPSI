@@ -6,7 +6,7 @@
     <data>
         <variable
             name="dataItem"
-            type="com.example.gapsiproyect.daos.ProductsDao" />
+            type="com.example.gapsiproyect.daos.Results" />
     </data>
 
 
@@ -15,6 +15,7 @@
         android:theme="@style/base_cardview"
         app:strokeColor="#D0D0D0"
         app:strokeWidth="1dp"
+        app:cardElevation="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
@@ -24,8 +25,21 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/padding_standar"
+            android:layout_margin="@dimen/padding_small"
             >
+
+            <ImageView
+                android:id="@+id/img_productImage"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/padding_standar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/noimage"
+                tools:src="@drawable/noimage"
+                android:contentDescription="@string/resultrequestimage" />
 
 
             <TextView
@@ -37,7 +51,7 @@
                 android:textSize="@dimen/TextInfoCardView_xxlarge"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/img_productImage" />
 
             <TextView
                 android:id="@+id/txt_Name"
@@ -48,9 +62,9 @@
                 android:layout_marginTop="@dimen/padding_small"
                 android:textStyle="bold"
                 android:textSize="@dimen/TextInfoCardView_xxxlarge"
-                tools:text="Starbucks Coffee"
-                android:text="@{dataItem.name}"
-                android:textColor="@color/black"
+                tools:text="What IF"
+                android:text="@{dataItem.originalTitle}"
+                android:textColor="@color/StrongBlue"
                 />
 
 
@@ -79,30 +93,42 @@
                 android:layout_marginTop="@dimen/padding_small"
                 android:textStyle="bold"
                 android:textSize="@dimen/TextInfoCardView_large"
-                tools:text="The brainchild of our small batch brewer, George Woods. A dangerously drinkable milk sugar- infused Scotch Ale."
-                android:text="@{dataItem.description}"
-                android:textColor="@color/black"
+                tools:text="Liberty, a socially awkward 16-year-old, returns from two months at camp to a blindsided introduction of her mother’s fiancé, John Smith, whose charm, intelligence, and beauty paint the picture of a man too perfect to be human."
+                android:text="@{dataItem.overview}"
+                android:textColor="@color/StrongBlue"
                 />
 
 
 
-            <ImageView
-                android:id="@+id/img_productImage"
+
+            
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/showmore"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padding_standar"
+                tools:text="Info"
                 app:layout_constraintTop_toBottomOf="@id/txt_descriptiontVale"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:scaleType="fitCenter"
-                tools:src="@drawable/ic_mic_black_24dp"
+                app:layout_constraintEnd_toStartOf="@id/savemovie"
+                android:text="@string/first_button_title"
+                style="?attr/borderlessButtonStyle"
                 />
 
-
-
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/savemovie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_standar"
+                tools:text="Save"
+                app:layout_constraintTop_toBottomOf="@id/txt_descriptiontVale"
+                app:layout_constraintStart_toEndOf="@id/showmore"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/second_button_title"
+                style="?attr/borderlessButtonStyle"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </com.google.android.material.card.MaterialCardView>
 </layout>

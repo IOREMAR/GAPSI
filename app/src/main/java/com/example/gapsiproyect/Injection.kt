@@ -23,17 +23,15 @@ import com.example.gapsiproyect.Repositories.ProductRepository
 import com.example.gapsiproyect.Utils.ViewModelFactory
 
 /**
- * Class that handles object creation.
- * Like this, objects can be passed as parameters in the constructors and then replaced for
- * testing, where needed.
+ * Class creadora de repositorios.
  */
 object Injection {
 
     /**
-     * Creates an instance of [GithubRepository] based on the [GithubService] and a
-     * [GithubLocalCache]
+     * Creates an instance of [ProductRepository] based on the [ProductsNetwork]
+     *
      */
-    private fun provideGithubRepository(): ProductRepository {
+    private fun provideProductRepository(): ProductRepository {
         return ProductRepository(ProductsNetwork.create())
     }
 
@@ -42,6 +40,6 @@ object Injection {
      * [ViewModel] objects.
      */
     fun provideViewModelFactory(owner: SavedStateRegistryOwner): ViewModelProvider.Factory {
-        return ViewModelFactory(owner, provideGithubRepository())
+        return ViewModelFactory(owner, provideProductRepository())
     }
 }

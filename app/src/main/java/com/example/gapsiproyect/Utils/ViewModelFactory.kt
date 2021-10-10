@@ -21,7 +21,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.gapsiproyect.Repositories.ProductRepository
-import com.example.gapsiproyect.viewmodels.MainViewModel
+import com.example.gapsiproyect.viewmodels.MoviesViewModel
 
 /**
  * Factory for ViewModels
@@ -36,9 +36,9 @@ class ViewModelFactory(
         modelClass: Class<T>,
         handle: SavedStateHandle
     ): T {
-        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(MoviesViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return MainViewModel(repository, handle) as T
+            return MoviesViewModel(repository, handle) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

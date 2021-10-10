@@ -6,22 +6,25 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gapsiproyect.daos.ProductsDao
+import com.example.gapsiproyect.daos.Results
 import com.example.gapsiproyect.databinding.ProductItemBinding
 import com.squareup.picasso.Picasso
 
-class ProductsAdapter : PagingDataAdapter <ProductsDao,ProductsAdapter.ViewHolderAdapter>(ITEM_COMPARATOR) {
+
+class ProductsAdapter : PagingDataAdapter <Results,ProductsAdapter.ViewHolderAdapter>(ITEM_COMPARATOR) {
 
     inner class ViewHolderAdapter(val binding:ProductItemBinding ) :
         RecyclerView.ViewHolder(binding.root) {
         /**
          * @bind Uses Item : @TransactionsDao to asing the Data to the View By DataBinding ->  @dataItem
          */
-        fun bind(item: ProductsDao?) {
+        fun bind(item: Results?) {
 
             item.apply {
                 binding.dataItem = item
-                Picasso.get().load(item?.image_url).into(binding.imgProductImage)
+               if(item?.backdropPath != null) {
+                   Picasso.get().load(IMAGE_URL + item?.backdropPath).into(binding.imgProductImage)
+               }
                 binding.executePendingBindings()
             }
 
@@ -42,11 +45,14 @@ class ProductsAdapter : PagingDataAdapter <ProductsDao,ProductsAdapter.ViewHolde
     }
 
     companion object {
-        private val ITEM_COMPARATOR = object : DiffUtil.ItemCallback<ProductsDao>() {
-            override fun areItemsTheSame(oldItem: ProductsDao, newItem: ProductsDao): Boolean =
+
+        private val IMAGE_URL = "https://image.tmdb.org/t/p/original"
+
+        private val ITEM_COMPARATOR = object : DiffUtil.ItemCallback<Results>() {
+            override fun areItemsTheSame(oldItem: Results, newItem: Results): Boolean =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: ProductsDao, newItem: ProductsDao): Boolean =
+            override fun areContentsTheSame(oldItem: Results, newItem: Results): Boolean =
                 oldItem == newItem
         }
     }
