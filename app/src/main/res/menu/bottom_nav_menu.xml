@@ -17,7 +17,7 @@
         android:icon="@drawable/homeimage"
         android:title="@string/home" />
     <item
-        android:id="@id/save_dest"
-        android:icon="@drawable/downloadimage"
-        android:title="@string/Save" />
+        android:id="@id/location_dest"
+        android:icon="@drawable/locationimage"
+        android:title="@string/location" />
 </menu>

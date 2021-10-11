@@ -16,6 +16,5 @@
     <string name="resultrequestimage">ResultRequestImage</string>
     <string name="home">Home</string>
     <string name="Save">Saved</string>
-
-
+    <string name="location">Location</string>
 </resources>

@@ -16,10 +16,12 @@
 
 package com.example.gapsiproyect
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.gapsiproyect.Network.ProductsNetwork
 import com.example.gapsiproyect.Repositories.ProductRepository
+import com.example.gapsiproyect.Repositories.RoomRepository
 import com.example.gapsiproyect.Utils.ViewModelFactory
 
 /**
@@ -35,11 +37,20 @@ object Injection {
         return ProductRepository(ProductsNetwork.create())
     }
 
+
+    /**
+     * Creates an instance of [ProductRepository] based on the [ProductsNetwork]
+     *
+     */
+    private fun provideDBRepository(context: Context): RoomRepository {
+        return RoomRepository(context)
+    }
+
     /**
      * Provides the [ViewModelProvider.Factory] that is then used to get a reference to
      * [ViewModel] objects.
      */
-    fun provideViewModelFactory(owner: SavedStateRegistryOwner): ViewModelProvider.Factory {
-        return ViewModelFactory(owner, provideProductRepository())
+    fun provideViewModelFactory(owner: SavedStateRegistryOwner,context: Context): ViewModelProvider.Factory {
+        return ViewModelFactory(owner, provideProductRepository(),provideDBRepository(context))
     }
 }

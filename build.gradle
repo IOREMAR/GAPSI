@@ -10,6 +10,7 @@ buildscript {
           constraintLayoutVersion = "2.1.1"
           retrofitLibrary = "2.9.0"
           pagingVersion = '3.0.1'
+          room_version = "2.3.0"
      }
      repositories {
           google()

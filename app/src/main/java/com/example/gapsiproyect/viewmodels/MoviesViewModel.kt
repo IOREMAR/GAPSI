@@ -5,13 +5,16 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.gapsiproyect.Loaders.LoadingState
 import com.example.gapsiproyect.Repositories.ProductRepository
+import com.example.gapsiproyect.Repositories.RoomRepository
 import com.example.gapsiproyect.daos.Results
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 
 class MoviesViewModel (private val repository :  ProductRepository,
+                       private val roomRepository: RoomRepository,
                        private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-
 
     private val _loading = MutableLiveData<LoadingState>()
 
@@ -35,6 +38,12 @@ class MoviesViewModel (private val repository :  ProductRepository,
             .cachedIn(viewModelScope)
         currentSearchResult = newResult
         return newResult
+    }
+
+
+     fun setResultsItem(movie: Results){
+            roomRepository?.setMovie(movie)
+
     }
 
 

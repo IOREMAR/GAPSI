@@ -21,6 +21,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.gapsiproyect.Repositories.ProductRepository
+import com.example.gapsiproyect.Repositories.RoomRepository
 import com.example.gapsiproyect.viewmodels.MoviesViewModel
 
 /**
@@ -28,7 +29,9 @@ import com.example.gapsiproyect.viewmodels.MoviesViewModel
  */
 class ViewModelFactory(
     owner: SavedStateRegistryOwner,
-    private val repository: ProductRepository
+    private val productRepository: ProductRepository,
+    private val roomRepository: RoomRepository
+
 ) : AbstractSavedStateViewModelFactory(owner, null) {
 
     override fun <T : ViewModel?> create(
@@ -38,7 +41,7 @@ class ViewModelFactory(
     ): T {
         if (modelClass.isAssignableFrom(MoviesViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return MoviesViewModel(repository, handle) as T
+            return MoviesViewModel(productRepository,roomRepository , handle) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

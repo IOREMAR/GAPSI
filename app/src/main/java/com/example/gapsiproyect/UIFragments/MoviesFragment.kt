@@ -11,6 +11,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gapsiproyect.Adapters.ProductsAdapter
 import com.example.gapsiproyect.Injection
+import com.example.gapsiproyect.daos.Results
 import com.example.gapsiproyect.daos.SuggestionItem
 import com.example.gapsiproyect.databinding.MoviesFragmentBinding
 import com.example.gapsiproyect.viewmodels.MoviesViewModel
@@ -31,16 +32,15 @@ class MoviesFragment : Fragment() {
 
     private lateinit var mainViewModel: MoviesViewModel
 
-    private val PREFERENCE_KEY ="KEY"
-
     private  lateinit var binding : MoviesFragmentBinding
-
-
 
     private var searchJob: Job? = null
 
-    var adapter = ProductsAdapter()
+   var adapter = ProductsAdapter()
 
+    val onSaveClicked: (Item: Results) -> Unit = { ResultsItem ->
+        mainViewModel.setResultsItem(ResultsItem)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,12 +54,14 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mainViewModel =  ViewModelProvider(this, Injection.provideViewModelFactory(owner = this))
+        mainViewModel =  ViewModelProvider(this, Injection.provideViewModelFactory(owner = this,requireContext()))
             .get(MoviesViewModel::class.java)
 
         binding.lifecycleOwner  = this
 
         binding.viewModel = mainViewModel
+
+        adapter.clickItem = onSaveClicked
 
         val layoutt_Manager = LinearLayoutManager(activity)
         layoutt_Manager.orientation = LinearLayoutManager.VERTICAL

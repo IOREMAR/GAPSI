@@ -1,7 +1,6 @@
 package com.example.gapsiproyect.Adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -13,27 +12,34 @@ import com.squareup.picasso.Picasso
 
 class ProductsAdapter : PagingDataAdapter <Results,ProductsAdapter.ViewHolderAdapter>(ITEM_COMPARATOR) {
 
+    lateinit var clickItem: (Item: Results) -> Unit
+
     inner class ViewHolderAdapter(val binding:ProductItemBinding ) :
         RecyclerView.ViewHolder(binding.root) {
         /**
          * @bind Uses Item : @TransactionsDao to asing the Data to the View By DataBinding ->  @dataItem
          */
         fun bind(item: Results?) {
-
             item.apply {
                 binding.dataItem = item
                if(item?.backdropPath != null) {
                    Picasso.get().load(IMAGE_URL + item?.backdropPath).into(binding.imgProductImage)
                }
+
+                binding.savemovie.setOnClickListener {
+                    clickItem.invoke(item!!)
+                }
                 binding.executePendingBindings()
             }
 
         }
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderAdapter {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ProductItemBinding.inflate(inflater, parent, false)
+
         return ViewHolderAdapter(binding)
     }
 

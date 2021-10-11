@@ -13,13 +13,13 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/save_dest" />
+            app:destination="@id/location_dest" />
     </fragment>
     <fragment
-        android:id="@+id/save_dest"
-        android:name="com.example.gapsiproyect.UIFragments.SavedFragment"
+        android:id="@+id/location_dest"
+        android:name="com.example.gapsiproyect.UIFragments.DetailMapsFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/saved_fragment">
+        tools:layout="@layout/fragment_detail_maps">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
